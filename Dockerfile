@@ -1,15 +1,20 @@
+# Use an official Node.js runtime as the base image
 FROM node:alpine
 
-RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
+# Set the working directory in the container to /app
+WORKDIR /app
 
-WORKDIR /usr/src/node-app
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-COPY package.json yarn.lock ./
+# Install the application dependencies
+RUN yarn install
 
-USER node
+# Copy the rest of the application code to the working directory
+COPY . .
 
-RUN yarn install --pure-lockfile
-
-COPY --chown=node:node . .
-
+# Expose the application on port 3000
 EXPOSE 3000
+
+# Define the command to run the application
+CMD [ "yarn", "dev" ]
