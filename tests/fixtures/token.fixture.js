@@ -9,6 +9,6 @@ const userOneAccessToken = tokenService.generateToken(userOne._id, accessTokenEx
 const adminAccessToken = tokenService.generateToken(admin._id, accessTokenExpires, tokenTypes.ACCESS);
 
 module.exports = {
-  userOneAccessToken,
-  adminAccessToken,
+	userOneAccessToken,
+	adminAccessToken,
 };
