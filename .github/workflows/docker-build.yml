@@ -1,5 +1,9 @@
 name: Build and Deploy to ECR
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   push:
     branches:
@@ -22,9 +26,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: us-east-1
-        permissions:
-          id-token: write
-          contents: read
+
 
       - name: Login to Amazon ECR
         id: login-ecr
